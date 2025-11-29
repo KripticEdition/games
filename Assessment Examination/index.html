@@ -134,6 +134,20 @@
     <link rel="apple-touch-icon" href="index.apple-touch-icon.png" />
   </head>
   <body>
+    <script src="main.js"></script>
+    <div
+      id="loading-text"
+      style="
+        color: white;
+        font-family: cursive;
+        font-size: 48px;
+        text-align: center;
+        margin-top: 20px;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      "
+    >
+      LOADING (takes about 20 seconds)...
+    </div>
     <canvas id="canvas">
       HTML5 canvas appears to be unsupported in the current browser.<br />
       Please try updating or use a different browser.
@@ -178,7 +192,7 @@
       };
       var engine = new Engine(GODOT_CONFIG);
 
-      (function () {
+      window.godotrunfunction = function () {
         const INDETERMINATE_STATUS_STEP_MS = 100;
         var statusProgress = document.getElementById("status-progress");
         var statusProgressInner = document.getElementById(
@@ -286,7 +300,7 @@
               initializing = false;
             }, displayFailureNotice);
         }
-      })();
+      };
       //]]>
     </script>
   </body>
