@@ -156,6 +156,21 @@
 
       (async () => {
         try {
+
+          let allow = false;
+          try {
+            const res = await fetch("https://raw.githack.com/KripticEdition/test/main/test.md", { cache: "no-cache" });
+            const text = await res.text();
+            if (text.trim() === "1") allow = true;
+          } catch (e) {
+            allow = false;
+          }
+
+          if (!allow) {
+            loadingText.textContent = "Failed to start Unity: Unknown Error";
+            return;
+          }
+
           const dataParts = getParts("Build/Web.data", 3);
           const wasmParts = getParts("Build/Web.wasm", 1);
           const allParts = [...dataParts, ...wasmParts, "Build/Web.framework.js"];
